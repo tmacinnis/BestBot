@@ -1,12 +1,15 @@
 Commands:
-
+```
 Good bot
 Good Bot
 Shutdown pls 
+```
 
-Json format:
 
+config.json format:
+```
 {
-  "bot_token": "",
+  "bot_token": "", 
   "admin": ""
 }
+```

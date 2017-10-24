@@ -36,6 +36,7 @@ async def ot(ctx):
     previous_message_author = msg[-1].author
     if "BestBot" in previous_message_author.name and previous_message_author.bot:
         await bot.send_message(ctx.message.channel, 'Thank you!')
+        #respond with reaction gif Happy
     #else:
         #if "BestBot" not in previous_message_author.name and previous_message_author.bot:
             #TODO: Wait for response from other bot
@@ -126,6 +127,12 @@ async def ls(ctx):
 #Uptime
 
 #Figure out a restart function
+
+#Help
+
+#Commands
+
+#Moods
 
 #Function for Contributor/Admin check
     #Make sure someone is actually allowed to use bot functions

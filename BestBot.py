@@ -1,7 +1,9 @@
 import logging
 import json
-import time
-import asyncio
+import requests
+from bs4 import BeautifulSoup
+import hashlib
+import websiteTrackingSqlite
 import discord
 from discord.ext import commands
 
@@ -16,7 +18,8 @@ logger.addHandler(handler)
 with open('config.json', 'r') as f:
     config = json.load(f)
 
-bot = commands.Bot(command_prefix=['Good b', 'Good B', 'Shutdown p'], description='testing')
+
+bot = commands.Bot(command_prefix=['!!','Good b', 'Good B', 'Shutdown p'], description='testing')
 
 @bot.event
 async def on_ready():
@@ -77,8 +80,41 @@ async def ot(ctx):
 
 
 
+#Check website for changes, @user when it's changed, stop tracking unless user responds
+
+#whisper or @test  !!whisper
+
+#Add time, user, and website to db !!track https://....
+@bot.command(pass_context = True)
+async def track(ctx, url):
+    #check if valid site
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    response = requests.get(url, headers=headers)
+        #report if no data returned
+    soup = BeautifulSoup(response.text, "html.parser")
+    currentHash = hashlib.sha224(soup.encode("utf-8")).hexdigest()
+    print("Got hash of {}".format(url))
+    #if no local db, create sqllite db with ID, User, Site, Hash, Active
+    
+    #if loop is not running to check for site updates, start loop
+        
+        #download hash
+
+
+
+#Recall which sites are assigned to user
+
+
+
+#Remove site tracking for user
+
+
+
+
 #Reaction GIF
         #TODO: Create Reaction gif JSON
+
+
 
 #Add Reaction
     #Check permissions
